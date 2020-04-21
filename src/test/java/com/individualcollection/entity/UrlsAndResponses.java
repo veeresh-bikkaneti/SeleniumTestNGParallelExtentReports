@@ -1,4 +1,4 @@
-package com.entity;
+package com.individualcollection.entity;
 
 public class UrlsAndResponses {
     private String url;

@@ -2,8 +2,9 @@ package com.individualcollection;
 
 
 import com.drivers.TestBase;
-import com.entity.UrlsAndResponses;
 import com.implementation.RestServiceUtilImplimentation;
+import com.individualcollection.entity.UrlsAndResponses;
+import com.utilities.PropertiesReader;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
@@ -14,11 +15,16 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+
 public class BrokenURLsinWebPage extends TestBase {
+    private PropertiesReader propertiesReader;
+    private String auTestURL;
+
     public BrokenURLsinWebPage() {
         super();
+        this.propertiesReader = new PropertiesReader();
+        this.auTestURL = propertiesReader.getAut();
     }
-    public final String auTestURL = "https://www.amazon.com/";
 
     @Test
     void launchAmazonForAPI() {
@@ -26,7 +32,7 @@ public class BrokenURLsinWebPage extends TestBase {
     }
 
 
-    @Test (dependsOnMethods = "launchAmazonForAPI")
+    @Test(dependsOnMethods = "launchAmazonForAPI")
     void brokenUrls() {
         HttpURLConnection connection = null;
         try {
@@ -39,18 +45,18 @@ public class BrokenURLsinWebPage extends TestBase {
     }
 
 
-    @Test (dependsOnMethods = "brokenUrls")
+    @Test(dependsOnMethods = "brokenUrls")
     void validateAllBrokenLinks() {
         HttpURLConnection httpURLConnection = null;
         UrlsAndResponses objectOfUrlAndResponses = new UrlsAndResponses();
-        String href ;
-                restServiceUtil = new RestServiceUtilImplimentation();
+        String href;
+        restServiceUtil = new RestServiceUtilImplimentation();
         By anchorTag = By.tagName("a");
         List<WebElement> anchorTags = webDriverInstance.findElements(anchorTag);
         List<String> anchorTestList = new ArrayList<>();
 
         for (WebElement anchor : anchorTags) {
-             href = anchor.getAttribute("href");
+            href = anchor.getAttribute("href");
             if (Objects.nonNull(href)) {
                 anchorTestList.add(href.contains("http") ? href : null);
             }

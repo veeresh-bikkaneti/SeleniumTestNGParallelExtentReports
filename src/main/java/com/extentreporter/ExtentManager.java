@@ -21,18 +21,13 @@ public class ExtentManager {
     public static ExtentReports getInstance() {
         if (extent == null)
             createInstance();
-        File file = new File(extentReportPath);
-        if (!file.exists()) {
-            System.out.println("File created " + file);
-            file.mkdir();
-        }
 
         return extent;
     }
 
     //Create an extent report instance
     public static ExtentReports createInstance() {
-
+        createReportPath(extentReportPath);
         ExtentHtmlReporter htmlReporter = new ExtentHtmlReporter(extentReportPath + reportFileName);
         htmlReporter.config().setTestViewChartLocation(ChartLocation.BOTTOM);
         htmlReporter.config().setChartVisibilityOnOpen(true);
