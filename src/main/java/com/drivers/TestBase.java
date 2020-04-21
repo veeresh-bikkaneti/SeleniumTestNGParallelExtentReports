@@ -25,27 +25,6 @@ public abstract class TestBase {
         this.webDriverManagement = new WebDriverManagementImp(webDriverInstance);
     }
 
-  /*   @BeforeSuite
-    public void startExtentReport() {
-        this.extentTestMap = new HashMap();
-        this.extent = this.extentManagerService.getReporter();
-    }
-
-   @BeforeClass
-    public void reportClass() {
-        this.extentTestMap.get(this.extent.startTest(this.getClass().getName()));
-    }*/
-
-   /* @BeforeMethod
-    public void report(Method method) {
-        this.extentTestMap.get(this.extent.startTest(method.getName()));
-    }*/
-
-   /* @AfterMethod
-    public void getResult(ITestResult result, Method methodName) throws Exception {
-        this.extentTestMap.afterMethod(result, logger, methodName);
-    }*/
-
 
     @BeforeClass
     public void beforeTest() {
@@ -59,8 +38,5 @@ public abstract class TestBase {
         webDriverManagement.quitWebDriverInstance();
     }
 
-    /*@AfterTest
-    public void flushReport() {
-        this.extent.flush();
-    }*/
+
 }
