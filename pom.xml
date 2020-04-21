@@ -7,8 +7,21 @@
     <groupId>SeleniumUIAutomation</groupId>
     <artifactId>SeleniumUIAutomation</artifactId>
     <version>1.0-SNAPSHOT</version>
-    <name>${project.name}</name>
+    <name>SeleniumUIAutomation</name>
     <packaging>jar</packaging>
+    <developers>
+        <developer>
+            <name>Veeresh Bikkaneti</name>
+            <email>Veeresh.esh@gmail.com</email>
+            <url>https://www.linkedin.com/in/sdetbaveer/</url>
+            <organization>Self</organization>
+            <roles>
+                <role>Certified Scrum Master, QA Automation Engineer</role>
+                <role>Software developer</role>
+            </roles>
+            <timezone>America/New_York</timezone>
+        </developer>
+    </developers>
     <properties>
         <name>${project.name}</name>
         <version>${project.version}</version>
@@ -88,7 +101,6 @@
         </dependency>
 
 
-
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi</artifactId>
@@ -149,11 +161,11 @@
             <version>${rest-assured.version}</version>
         </dependency>
 
-  <!--      <dependency>
-            <groupId>com.aventstack</groupId>
-            <artifactId>extentreports</artifactId>
-            <version>${extentreports.version}</version>
-        </dependency>-->
+        <!--      <dependency>
+                  <groupId>com.aventstack</groupId>
+                  <artifactId>extentreports</artifactId>
+                  <version>${extentreports.version}</version>
+              </dependency>-->
         <dependency>
             <groupId>com.aventstack</groupId>
             <artifactId>extentreports</artifactId>
