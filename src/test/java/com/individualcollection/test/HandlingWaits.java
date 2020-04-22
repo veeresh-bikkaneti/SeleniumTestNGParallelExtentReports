@@ -3,10 +3,10 @@ package com.individualcollection.test;
 import com.drivers.TestBase;
 import com.implementation.BrowserInteractionServiceImplementation;
 import com.individualcollection.pagefactory.PagePo;
+import com.services.BrowserInteractionService;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
-import com.services.BrowserInteractionService;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 

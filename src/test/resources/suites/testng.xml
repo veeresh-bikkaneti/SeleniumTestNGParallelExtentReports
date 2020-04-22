@@ -4,7 +4,7 @@
     <listeners>
         <listener class-name="com.extentreporter.TestListener"/>
     </listeners>
-    <test verbose="5" preserve-order="true" name="D:/GitProject/SeleniumUIAutomation" parallel="true" thread-count="2">
+    <test verbose="5" preserve-order="true" name="D:/GitProject/SeleniumUIAutomation" parallel="classes" thread-count="2">
         <classes>
             <class name="com.individualcollection.test.PageLocatorStrategies"/>
             <class name="com.individualcollection.test.HandlingWaits"/>
