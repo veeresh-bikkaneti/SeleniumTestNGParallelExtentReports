@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="All Test Suite">
+    <listeners>
+        <listener class-name="com.extentreporter.TestListener"/>
+    </listeners>
+    <test verbose="5" preserve-order="true" name="D:/GitProject/SeleniumUIAutomation" parallel="none" thread-count="2">
+        <classes>
+            <class name="com.cogmento.testcases.LoginWorkflow"/>
+            <class name="com.cogmento.testcases.HomePageNavBar"/>
+
+        </classes>
+
+    </test>
+<!--    <test name="api">-->
+<!--        <classes>-->
+<!--            <class name="BrokenURLsinWebPage"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+</suite>

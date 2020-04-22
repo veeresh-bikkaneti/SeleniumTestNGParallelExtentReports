@@ -1,9 +1,11 @@
 package com.services;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 public interface WaitforInterface {
+    WebElement webDriverWaitTillVisibilityOfBy(By by);
 
     void waitForAngularRequestsToFinish();
 
@@ -25,13 +27,12 @@ public interface WaitforInterface {
 
     Boolean waitFluentlyTillInvisibilityOfElementLocatedBy(By locator);
 
-    WebElement webDriverWaitTillVisibilityOfElementBy(By by);
+    WebElement webDriverWaitTillVisibilityOfElementBy(WebDriver driver, By by);
 
     WebElement waitFluentlyTillVisibilityOfWebElement(WebElement e);
 
     String waitFluentForTexttoBeBy(By by);
 
-    String waitFluentForTexttoBeWebElement(WebElement element);
 
     Boolean waitTillWebElementToBeSelected(WebElement e);
 

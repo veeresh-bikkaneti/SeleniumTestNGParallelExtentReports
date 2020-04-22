@@ -6,7 +6,10 @@ import org.openqa.selenium.WebElement;
 
 import java.util.List;
 
-public interface Utilities {
+public interface BrowserInteractionService {
+    void maximizeWindow();
+    void minimizeWindow();
+    void resizeWindow(int width, int height);
 
     void generateAlert(String message);
 
@@ -22,6 +25,9 @@ public interface Utilities {
 
     void searchsegment(WebElement element, String SegmentID);
 
+    void insertIntoField(By by, String inputText);
+
+    void clickTheButton(By by);
 
     boolean isElementPresentBy(By by);
 

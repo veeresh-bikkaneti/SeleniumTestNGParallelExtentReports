@@ -23,18 +23,16 @@
         </developer>
     </developers>
     <properties>
-        <name>${project.name}</name>
-        <version>${project.version}</version>
+        <!--For Allure report-->
+        <aspectj.version>1.8.10</aspectj.version>
+        <!--For Allure report-->
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <java.version>1.8</java.version>
         <testng.version>6.14.2</testng.version>
-        <cucumber.version>5.6.0</cucumber.version>
         <!--        <selenium.version>4.0.0-alpha-5</selenium.version>-->
         <maven.failsafe.plugin.version>3.0.0-M3</maven.failsafe.plugin.version>
         <maven.build.helper.plugin.version>3.0.0</maven.build.helper.plugin.version>
-        <generated.runner.directory>${project.build.directory}/parallel/runners</generated.runner.directory>
-        <generated.feature.directory>${project.build.directory}/parallel/features</generated.feature.directory>
         <poi.version>4.1.1</poi.version>
         <httpclient.version>4.5.2</httpclient.version>
         <log4j.version>2.13.1</log4j.version>
@@ -47,6 +45,8 @@
         <rest-assured.version>2.9.0</rest-assured.version>
         <extentreports.version>4.1.5</extentreports.version>
 
+        <allure-testng.version>2.13.2</allure-testng.version>
+        <lombok.version>1.18.12</lombok.version>
     </properties>
 
     <dependencies>
@@ -172,6 +172,28 @@
             <version>3.1.5</version>
         </dependency>
 
+        <!--        AllureReport-->
+        <dependency>
+            <groupId>org.aspectj</groupId>
+            <artifactId>aspectjweaver</artifactId>
+            <version>${aspectj.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>io.qameta.allure</groupId>
+            <artifactId>allure-testng</artifactId>
+            <version>${allure-testng.version}</version>
+        </dependency>
+
+        <!--        AllureReport-->
+
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>${lombok.version}</version>
+            <scope>provided</scope>
+        </dependency>
+
 
     </dependencies>
     <build>
@@ -200,10 +222,11 @@
                     <suiteXmlFiles>
                         <suiteXmlFile>TestNG.xml</suiteXmlFile>
                     </suiteXmlFiles>
+                    <argLine>
+                        -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
+                    </argLine>
                 </configuration>
             </plugin>
-
-
         </plugins>
     </build>
 

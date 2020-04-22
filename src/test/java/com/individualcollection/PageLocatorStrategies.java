@@ -1,11 +1,11 @@
 package com.individualcollection;
 
 import com.drivers.TestBase;
-import com.implementation.UtilitiesImplementation;
+import com.implementation.BrowserInteractionServiceImplementation;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
-import com.services.Utilities;
+import com.services.BrowserInteractionService;
 
 import static org.assertj.core.api.Assertions.assertThat;
 public class PageLocatorStrategies extends TestBase {
@@ -14,11 +14,11 @@ public class PageLocatorStrategies extends TestBase {
 
     private By hmenuCustomerPorofile = By.cssSelector("#hmenu-customer-profile");
 
-    private Utilities utilities;
+    private BrowserInteractionService browserInteractionService;
     private String auTestURL = "https://www.amazon.com/";
 
     public PageLocatorStrategies() {
-        this.utilities = new UtilitiesImplementation();
+        this.browserInteractionService = new BrowserInteractionServiceImplementation(webDriverInstance);
     }
 
 
@@ -39,13 +39,13 @@ public class PageLocatorStrategies extends TestBase {
         waitforInterface.waitForJS();
         waitforInterface.waitForAngularRequestsToFinish();
 
-        assertThat(waitforInterface.webDriverWaitTillVisibilityOfElementBy(hmenuCustomerPorofile).isDisplayed());
+        assertThat(waitforInterface.webDriverWaitTillVisibilityOfElementBy(webDriverInstance,hmenuCustomerPorofile).isDisplayed());
     }
 
     @Test (dependsOnMethods ="validateSideNavHamburgerMenuIsDisplayed")
     void validateSideNavHamburgerMenuLabel() {
         String expectedHmenuText = "Hello, Sign in";
-        WebElement hmenuCustomerPorofilewebElement = waitforInterface.webDriverWaitTillVisibilityOfElementBy(hmenuCustomerPorofile);
+        WebElement hmenuCustomerPorofilewebElement = waitforInterface.webDriverWaitTillVisibilityOfElementBy(webDriverInstance,hmenuCustomerPorofile);
         String signing = hmenuCustomerPorofilewebElement.getText();
         assertThat(signing).containsIgnoringCase(expectedHmenuText);
     }

@@ -1,22 +1,22 @@
 package com.individualcollection;
 
 import com.drivers.TestBase;
-import com.implementation.UtilitiesImplementation;
+import com.implementation.BrowserInteractionServiceImplementation;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
-import com.services.Utilities;
+import com.services.BrowserInteractionService;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 public class HandlingWaits extends TestBase {
-    private Utilities utilities;
+    private BrowserInteractionService browserInteractionService;
     private WebElement countdown;
     private By countdownBy = By.id("javascript_countdown_time");
     private String auTestURL = "http://seleniumsimplified.com/testpages/javascript_countdown.html";
 
     public HandlingWaits() {
-        this.utilities = new UtilitiesImplementation();
+        this.browserInteractionService = new BrowserInteractionServiceImplementation(webDriverInstance);
     }
 
 /*    @BeforeMethod
@@ -36,7 +36,7 @@ public class HandlingWaits extends TestBase {
     @Test(dependsOnMethods = "lauchjavascriptCountdownURL")
     void validateCountDownIsVisibleWithWebDriverWait() {
         countdown = webDriverInstance.findElement(By.id("javascript_countdown_time"));
-        this.countdown = waitforInterface.webDriverWaitTillVisibilityOfElementBy(countdownBy);
+        this.countdown = waitforInterface.webDriverWaitTillVisibilityOfElementBy(webDriverInstance,countdownBy);
         assertThat(countdown.isDisplayed());
     }
 

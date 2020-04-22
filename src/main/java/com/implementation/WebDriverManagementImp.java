@@ -75,6 +75,7 @@ public class WebDriverManagementImp implements WebDriverManagement {
                 "--disable-web-security",
                 "--allow-running-insecure-content"
         );
+        options.addArguments("window-size=800,480");
         options.setHeadless(Boolean.FALSE);
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setCapability(CapabilityType.UNEXPECTED_ALERT_BEHAVIOUR, UnexpectedAlertBehaviour.ACCEPT);
