@@ -1,26 +1,26 @@
-package com.individualcollection;
+package com.individualcollection.test;
 
 import com.drivers.TestBase;
 import com.implementation.BrowserInteractionServiceImplementation;
-import org.openqa.selenium.By;
+import com.individualcollection.pagefactory.PagePo;
+import com.services.BrowserInteractionService;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
-import com.services.BrowserInteractionService;
 
 import static org.assertj.core.api.Assertions.assertThat;
+
 public class PageLocatorStrategies extends TestBase {
 
-    private By hamburgerMenu = By.cssSelector("#nav-hamburger-menu");
-
-    private By hmenuCustomerPorofile = By.cssSelector("#hmenu-customer-profile");
-
+    String expectedHmenuText = "Hello, Sign in";
+    private PagePo pagePo;
     private BrowserInteractionService browserInteractionService;
     private String auTestURL = "https://www.amazon.com/";
 
+
     public PageLocatorStrategies() {
+        this.pagePo = new PagePo();
         this.browserInteractionService = new BrowserInteractionServiceImplementation(webDriverInstance);
     }
-
 
     @Test
     void launchAmazonForUI() {
@@ -28,24 +28,22 @@ public class PageLocatorStrategies extends TestBase {
         assertThat(webDriverInstance.getCurrentUrl().compareToIgnoreCase(auTestURL));
     }
 
-    @Test(dependsOnMethods ="launchAmazonForUI" )
+    @Test(dependsOnMethods = "launchAmazonForUI")
     void validateSideNavHamburgerIconIsDisplayed() {
-        assertThat(waitforInterface.waitTillWebElementToBeClickable(hamburgerMenu).isDisplayed());
+        assertThat(waitforInterface.waitTillWebElementToBeClickable(pagePo.getHamburgerMenu()).isDisplayed());
     }
 
-    @Test (dependsOnMethods ="validateSideNavHamburgerIconIsDisplayed")
+    @Test(dependsOnMethods = "validateSideNavHamburgerIconIsDisplayed")
     void validateSideNavHamburgerMenuIsDisplayed() {
-        waitforInterface.waitTillWebElementToBeClickable(hamburgerMenu).click();
+        waitforInterface.waitTillWebElementToBeClickable(pagePo.getHamburgerMenu()).click();
         waitforInterface.waitForJS();
         waitforInterface.waitForAngularRequestsToFinish();
-
-        assertThat(waitforInterface.webDriverWaitTillVisibilityOfElementBy(webDriverInstance,hmenuCustomerPorofile).isDisplayed());
+        assertThat(waitforInterface.webDriverWaitTillVisibilityOfElementBy(webDriverInstance, pagePo.getHmenuCustomerPorofile()).isDisplayed());
     }
 
-    @Test (dependsOnMethods ="validateSideNavHamburgerMenuIsDisplayed")
+    @Test(dependsOnMethods = "validateSideNavHamburgerMenuIsDisplayed")
     void validateSideNavHamburgerMenuLabel() {
-        String expectedHmenuText = "Hello, Sign in";
-        WebElement hmenuCustomerPorofilewebElement = waitforInterface.webDriverWaitTillVisibilityOfElementBy(webDriverInstance,hmenuCustomerPorofile);
+        WebElement hmenuCustomerPorofilewebElement = waitforInterface.webDriverWaitTillVisibilityOfElementBy(webDriverInstance, pagePo.getHmenuCustomerPorofile());
         String signing = hmenuCustomerPorofilewebElement.getText();
         assertThat(signing).containsIgnoringCase(expectedHmenuText);
     }

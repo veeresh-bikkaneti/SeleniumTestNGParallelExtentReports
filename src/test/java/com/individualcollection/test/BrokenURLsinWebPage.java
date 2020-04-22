@@ -1,4 +1,4 @@
-package com.individualcollection;
+package com.individualcollection.test;
 
 
 import com.drivers.TestBase;

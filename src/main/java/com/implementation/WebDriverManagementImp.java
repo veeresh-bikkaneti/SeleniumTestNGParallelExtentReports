@@ -16,6 +16,7 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
+import java.util.concurrent.TimeUnit;
 
 public class WebDriverManagementImp implements WebDriverManagement {
     private static final String IMG_NAME = "screenshot.png";
@@ -25,7 +26,7 @@ public class WebDriverManagementImp implements WebDriverManagement {
     private static final String OUTPUT_PATH = "test-output/HtmlReport/";
     DateConverterService dateConverter = new DateConverter();
     private WebDriver driver;
-
+    private final long MAXTIMEOUT = 100L;
     public WebDriverManagementImp(WebDriver driver) {
         this.driver = driver;
     }
@@ -83,6 +84,8 @@ public class WebDriverManagementImp implements WebDriverManagement {
         capabilities.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
         driver = new ChromeDriver(options);
         driver.manage().deleteAllCookies();
+        driver.manage().timeouts().pageLoadTimeout(MAXTIMEOUT, TimeUnit.SECONDS);
+        driver.manage().timeouts().implicitlyWait(MAXTIMEOUT, TimeUnit.SECONDS);
         return driver;
     }
 

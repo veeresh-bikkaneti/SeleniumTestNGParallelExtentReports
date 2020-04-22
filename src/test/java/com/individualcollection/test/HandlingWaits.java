@@ -1,7 +1,8 @@
-package com.individualcollection;
+package com.individualcollection.test;
 
 import com.drivers.TestBase;
 import com.implementation.BrowserInteractionServiceImplementation;
+import com.individualcollection.pagefactory.PagePo;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.testng.annotations.Test;
@@ -12,10 +13,11 @@ import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 public class HandlingWaits extends TestBase {
     private BrowserInteractionService browserInteractionService;
     private WebElement countdown;
-    private By countdownBy = By.id("javascript_countdown_time");
+  private PagePo pagePo;
     private String auTestURL = "http://seleniumsimplified.com/testpages/javascript_countdown.html";
 
     public HandlingWaits() {
+        this.pagePo=new PagePo();
         this.browserInteractionService = new BrowserInteractionServiceImplementation(webDriverInstance);
     }
 
@@ -36,13 +38,15 @@ public class HandlingWaits extends TestBase {
     @Test(dependsOnMethods = "lauchjavascriptCountdownURL")
     void validateCountDownIsVisibleWithWebDriverWait() {
         countdown = webDriverInstance.findElement(By.id("javascript_countdown_time"));
-        this.countdown = waitforInterface.webDriverWaitTillVisibilityOfElementBy(webDriverInstance,countdownBy);
+        this.countdown = waitforInterface.webDriverWaitTillVisibilityOfElementBy(webDriverInstance, pagePo.getCountdownBy());
         assertThat(countdown.isDisplayed());
     }
 
     @Test(dependsOnMethods = "validateCountDownIsVisibleWithWebDriverWait")
     public void waitValidatecountdownBy() {
         waitforInterface.waitForAngularRequestsToFinish();
-        assertThat(waitforInterface.waitFluentForTexttoBeBy(countdownBy).endsWith("04"));
+        assertThat(waitforInterface.waitFluentForTexttoBeBy(pagePo.getCountdownBy()).endsWith("04"));
     }
+
+
 }

@@ -8,6 +8,7 @@ import com.implementation.WaitImp;
 import com.services.BrowserInteractionService;
 import com.services.WaitforInterface;
 import com.utilities.PropertiesReader;
+import io.qameta.allure.Step;
 import org.testng.annotations.Test;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
@@ -33,7 +34,7 @@ public class HomePageNavBar extends TestBase {
         this.password = propertiesReader.decodePassword(propertiesReader.getPassword());
     }
 
-
+@Step()
     @Test(alwaysRun = true)
     void launchAutCogmeto() {
         webDriverInstance.get(auTestURL);
