@@ -7,5 +7,11 @@ pipeline {
       }
     }
 
+    stage('test') {
+      steps {
+        sh 'jenkins/test-all.sh'
+      }
+    }
+
   }
 }
